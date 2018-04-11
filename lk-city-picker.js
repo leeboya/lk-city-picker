@@ -1,10 +1,10 @@
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as anonymous module.
-        define(['ChineseDistricts'], factory);
+        define(['./lk-city-picker.data'], factory);
     } else if (typeof exports === 'object') {
         // Node / CommonJS
-        factory(require('ChineseDistricts'));
+        factory(require('./lk-city-picker.data'));
     } else {
         // Browser globals.
         factory(ChineseDistricts);
