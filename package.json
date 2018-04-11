@@ -1,0 +1,11 @@
+{
+  "name": "lk-city-picker",
+  "version": "1.0.0",
+  "description": "test npm package & publish my first npm package for test",
+  "main": "lk-city-picker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "leego",
+  "license": "ISC"
+}

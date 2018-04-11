@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>来肯城市多级联动</title>
+    <link rel="stylesheet" type="text/css" href="cityPicker.css"/>
+</head>
+
+<body>
+<div id="wrap">
+<h3>CityPicker</h3>
+<article>
+    <p>点击下面的输入演示样式</p>
+    <input type="text" placeholder="点我~~看固定效果" style="width:100%;"/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<p>数据结构</p>
+    <textarea  placeholder="这里看返回数据的结构" style="height:200px;width:100%;"></textarea>
+</article>
+<p style="font-weight:bold;">
+	注意：<br/>
+数据源应当在逻辑层前面<br/>即 引入的script标签 lk-city-picker.data.js 因该在 lk-city-picker.js 前面。<br/>
+/**<br/>
+  * 使用 CityPicker 来调用控件<br/>
+  * @param {JSON} --codes:城市code ，success回调函数<br/>
+  */<br/>
+CityPicker.show({codes:"86",success:function(rst){}})<br/>
+</p>
+<! -- 数据源应当在逻辑层前面 -->
+<script src="popmotion.global.min.js"></script>
+<script src="lk-city-picker.data.js"></script>
+<script src="lk-city-picker.js"></script>
+<script>
+	var input = document.getElementsByTagName("input")[0];
+	var textarea = document.getElementsByTagName("textarea")[0];
+	
+	input.onclick = function(){
+	var _this = this;
+    //---------------------函数调用开始---------------------
+	/**
+  * 使用 CityPicker 来调用控件
+  * @param {JSON} --codes:城市code ，success回调函数,可能后期会增加 multiple参数来设置多选.
+  * todo:  多选
+  */
+		CityPicker.show({
+			codes:"86",
+            success: function (rst) {
+                var address = rst.address.join(" ");
+                	_this.value = address;
+				textarea.value = JSON.stringify(rst);
+            }
+        });
+    //---------------------函数调用结束---------------------
+	
+		debugger;
+		var wrap = document.querySelector('#wrap');
+		var ball = document.querySelector('.lk-address-select');
+		var wrapStyler = popmotion.styler(wrap);
+		var ballStyler2 = popmotion.styler(ball);
+
+		popmotion.tween({
+		  from: {height:0},
+		  to: {height:400},
+		  ease: popmotion.easing.backOut,
+		 // flip: Infinity,
+		  duration: 500
+		}).start(ballStyler2.set);
+		
+		popmotion.tween({
+		  from: {scale:1},
+		  to: {scale:0.9},
+		  ease: popmotion.easing.backOut,
+		 // flip: Infinity,
+		  duration: 500
+		}).start(wrapStyler.set);
+}
+
+</script>
+</div>
+
+</body>
+</html>
